@@ -12,7 +12,7 @@ html{
 }
 /*
 .servicios, 
-.navegacion-principal,
+.navegación-principal,
 .formulario{
     scroll-snap-align: center;
     scroll-snap-stop: always;
@@ -61,7 +61,7 @@ h1, h2, h3{
     /*al ponerle un ancho específico y poner a cada lado un 'auto' se centra*/
     /*-----------------------------*/
 }
-.boton{
+.button{
     background-color: var(--secundario);
     color: var(--blanco);
     padding: 1rem 3rem;
@@ -76,12 +76,12 @@ h1, h2, h3{
     border: none;
 }
 @media (min-width: 768px) {
-   .boton{
+   .button{
         width: auto;
 
    }
 }
-.boton:hover{
+.button:hover{
     cursor: pointer;
 }
 .nav-bg{
@@ -108,7 +108,7 @@ h1, h2, h3{
 /*----UTILIDADES----*/
 
 .navegacion-principal {
-    display: flex; /*habilita felxbox*/
+    display: flex; /*habilita flexbox*/
     flex-direction: column;
     align-items: center;
 }
@@ -136,7 +136,7 @@ h1, h2, h3{
     background-repeat: no-repeat;
     background-size: cover;
     height: 450px;
-    position: relative; /*padre SIEMPRE posicion relativa*/
+    position: relative; /*padre SIEMPRE posición relativa*/
     margin-bottom: 2rem;
 }
 .contenido-hero{
