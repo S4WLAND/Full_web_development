@@ -36,6 +36,14 @@ This repository contains my progress through the **Complete Web Development** co
 
 To learn and apply core web development technologies by building real-world projects step by step.
 
+
+## 🔗 Live Projects
+
+Here are some of the deployed projects from this course:
+
+- 🌐 [Stifh BL – Dev Profile](https://stifhbl.netlify.app/)
+
+
 ---
 
 ## 🧑‍💻 Author
