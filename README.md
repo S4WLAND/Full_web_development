@@ -43,6 +43,7 @@ Here are some of the deployed projects from this course:
 
 - 🌐 [Stifh BL – Dev Profile](https://stifhbl.netlify.app/)
 - 🌐 [Stifh BL – Fronted Store project](https://stifhblfrontendstore.netlify.app/)
+- 🌐 [Stifh BL – Blog De Cafe project](https://stifhblogdecafe.netlify.app/)
 
 ---
 
