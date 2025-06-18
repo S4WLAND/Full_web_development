@@ -259,3 +259,20 @@ h3 {
     background-color: var(--secondaryDark);
 }
 
+@media (max-width: 390px) {
+  /* Ajustes extra para pantallas muy pequeñas */
+  h1 {
+    font-size: 2.4rem;
+  }
+  .navigation__link {
+    font-size: 2rem;
+  }
+  .form__field,
+  .form__submit {
+    font-size: 1.6rem;
+    padding: 1rem;
+  }
+  .footer__text {
+    font-size: 1.6rem;
+  }
+}
