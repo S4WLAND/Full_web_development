@@ -1,67 +1,67 @@
-// Seleccionar elementos...
+// Select elements...
 
 // querySelector
 
-const textoHeading = document.querySelector('.header__texto h2');
-console.log(textoHeading);
+const headingText = document.querySelector('.header__text h2');
+console.log(headingText);
 
-textoHeading.textContent = 'Nuevo Heading'; // También se puede utilizar .text
+headingText.textContent = 'New Heading'; // You can also use .text
 
 // querySelectorAll
-const enlaces = document.querySelectorAll('.navegacion a');
-console.log(enlaces);
+const links = document.querySelectorAll('.navigation a');
+console.log(links);
 
-// Algunas operaciones...
+// Some operations...
 
-// Cambiar el texto
-enlaces[0].textContent = 'Nuevo Texto enlace';
+// Change the text
+links[0].textContent = 'New Link Text';
 
-// Cambiar el enlace del primer enlace
-enlaces[0].href = 'google.com';
+// Change the first link's href
+links[0].href = 'google.com';
 
-// Agregar una clase...
-enlaces[0].classList.add('nueva-clase');
+// Add a class...
+links[0].classList.add('new-class');
 
-// Eliminar una clase...
-// enlaces[0].classList.remove('navegacion__enlace');
-
-
-// Generar HTML desde JavaScript...
-const nuevoEnlace = document.createElement('A');
-
-console.log(nuevoEnlace);
-
-// Un enlace tiene una clase...
-nuevoEnlace.classList.add('navegacion__enlace');
-
-// Tiene un href
-nuevoEnlace.href = 'nuevo-enlace.html';
-
-// Tiene un Texto...
-nuevoEnlace.textContent = 'Un Nuevo Enlace';
-
-// console.log(nuevoEnlace);
-
-// Finalmente se agrega donde lo deseamos colocar...
-
-// Tienes que seleccionar el elemento padre
-
-const navegacion = document.querySelector('.navegacion');
-navegacion.appendChild(nuevoEnlace);
+// Remove a class...
+// links[0].classList.remove('navigation__link');
 
 
+// Generate HTML from JavaScript...
+const newLink = document.createElement('A');
+
+console.log(newLink);
+
+// A link has a class...
+newLink.classList.add('navigation__link');
+
+// Has an href
+newLink.href = 'new-link.html';
+
+// Has text...
+newLink.textContent = 'A New Link';
+
+// console.log(newLink);
+
+// Finally add it where we want to place it...
+
+// You have to select the parent element
+
+const navigation = document.querySelector('.navigation');
+navigation.appendChild(newLink);
 
 
 
 
-// Eventos en JavaScript...
 
-// Hay muchos eventos ocurriendo en tus sitios y aplicaciones web, cuando un usuario da click, cuando dan scroll, al presionar en un botón, enviar un formulario, pero uno de los más comunes es esperar a que el documento este listo...
+
+// Events in JavaScript...
+
+// There are many events happening in your sites and web applications, when a user clicks, when they scroll, when pressing a button, submitting a form, but one of the most common is waiting for the document to be ready...
 
 
 
 console.log('1');
-window.addEventListener('load', function() { // Cuando el Archivo JS y los archivos dependientes han cargado como es el HTML y las imagenes...
+window.addEventListener('load', function() { // When the JS file and dependent files have loaded like HTML and images...
     console.log('2');
 });
 
@@ -69,17 +69,17 @@ window.onload = function() {
     console.log('3')
 };
 
-document.addEventListener('DOMContentLoaded', function() { // Este se ejecuta cuando el HTML ha sido descargado pero no espera por CSS o imagenes...
+document.addEventListener('DOMContentLoaded', function() { // This executes when HTML has been downloaded but doesn't wait for CSS or images...
     console.log('4');
 });
 
 console.log('5');
 
-// Estos closures también pueden ser con una función aparte...
+// These closures can also be with a separate function...
 
 
 
-// // Eventos Scroll...
+// // Scroll Events...
 // window.onscroll = function(e) {
 //     console.log('scrolling...');
 
@@ -88,89 +88,88 @@ console.log('5');
 
 
 
-// Eventos con Click y submit...
+// Click and submit events...
 
-// const btnEnviar = document.querySelector('.formulario input[type=submit]');
-// console.log(btnEnviar);
+// const submitBtn = document.querySelector('.form input[type=submit]');
+// console.log(submitBtn);
 
-// btnEnviar.addEventListener('click', function() { // callback o closure 
+// submitBtn.addEventListener('click', function() { // callback or closure 
 //     console.log('click');
 // });
 
-const datos = {
-    nombre: '',
+const data = {
+    name: '',
     email: '',
-    mensaje: ''
+    message: ''
 }
 
 // submit
-const formulario = document.querySelector('.formulario');
+const form = document.querySelector('.form');
 
-formulario.addEventListener('submit', function(e) {
+form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     console.log(e);
 
-    console.log('Di click y la página ya no recarga');
+    console.log('Clicked and the page no longer reloads');
 
-    console.log(datos);
+    console.log(data);
 
-    // Validar el Formulario...
+    // Validate the Form...
 
-    const { nombre, email, mensaje } = datos;
+    const { name, email, message } = data;
 
-    if(nombre === '' || email === '' || mensaje === '' ) {
-        console.log('Al menos un campo esta vacio');
-        mostrarError('Todos los campos son obligatorios');
-        return; // Detiene la ejecución de esta función
+    if(name === '' || email === '' || message === '' ) {
+        console.log('At least one field is empty');
+        showError('All fields are required');
+        return; // Stops the execution of this function
     }
 
-    console.log('Todo bien...')
+    console.log('Everything is fine...')
 
-    mostrarMensaje('Mensaje enviado correctamente');
+    showMessage('Message sent successfully');
 });
 
 
-function mostrarError(mensaje) {
-    const alerta = document.createElement('p');
-    alerta.textContent = mensaje;
-    alerta.classList.add('error');
+function showError(message) {
+    const alert = document.createElement('p');
+    alert.textContent = message;
+    alert.classList.add('error');
 
-    formulario.appendChild(alerta);
+    form.appendChild(alert);
 
     setTimeout(() => {
-        alerta.remove();
+        alert.remove();
     }, 3000);
 }
 
-function mostrarMensaje(mensaje) {
-    const alerta = document.createElement('p');
-    alerta.textContent = mensaje;
-    alerta.classList.add('correcto');
-    formulario.appendChild(alerta);
+function showMessage(message) {
+    const alert = document.createElement('p');
+    alert.textContent = message;
+    alert.classList.add('success');
+    form.appendChild(alert);
 
     setTimeout(() => {
-        alerta.remove();
+        alert.remove();
     }, 3000);
 }
 
 
-// Eventos de los Inputs...
-const nombre = document.querySelector('#nombre');
+// Input Events...
+const name = document.querySelector('#name');
 const email = document.querySelector('#email');
-const mensaje = document.querySelector('#mensaje');
+const message = document.querySelector('#message');
 
 
-nombre.addEventListener('input', leerTexto);
-email.addEventListener('input', leerTexto);
-mensaje.addEventListener('input', leerTexto);
+name.addEventListener('input', readText);
+email.addEventListener('input', readText);
+message.addEventListener('input', readText);
 
-function leerTexto(e) {
+function readText(e) {
     // console.log(e);
     // console.log(e.target.value);
 
-    datos[e.target.id] = e.target.value;
+    data[e.target.id] = e.target.value;
 
-    console.log(datos);
+    console.log(data);
 }
-
