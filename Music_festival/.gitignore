@@ -1,0 +1,19 @@
+# Dependencias de Node
+node_modules/
+
+# Carpeta de build (Gulp)
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+
+# Entornos / variables
+.env
+.env.*.local
+
+# SO y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
