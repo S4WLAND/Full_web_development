@@ -435,7 +435,7 @@ body > section {
 }
 .video .overlay {
   position: absolute;
-  background: linear-gradient(270deg, rgba(117, 47, 151, 0.6), rgba(57, 23, 73, 0.9));
+  background: linear-gradient(270deg, rgba(117, 47, 151, 0.6), rgba(56.7272727273, 22.7878787879, 73.2121212121, 0.9));
   inset: 0;
   display: flex;
   align-items: center;
@@ -545,14 +545,14 @@ body > section {
   background-color: #fdda00;
 }
 .bg-amarillo li:nth-child(odd) {
-  background-color: #ffdf18;
+  background-color: rgb(255, 222.9743083004, 23.5);
 }
 
 .bg-verde {
   background-color: #4CB8B3;
 }
 .bg-verde li:nth-child(odd) {
-  background-color: #5ebfbb;
+  background-color: rgb(94.258, 191.242, 186.752);
 }
 
 .galeria {
@@ -707,7 +707,7 @@ body > section {
   cursor: pointer;
 }
 .pase-footer p:hover {
-  background-color: #391749;
+  background-color: rgb(56.7272727273, 22.7878787879, 73.2121212121);
 }
 
 .footer {
