@@ -12,14 +12,11 @@ function obtener_servicios() {
         //realizar la consulta
         $consulta = mysqli_query($db, $sql);
 
+        return $consulta;
+
         // acceder a los resultados
-        echo "<pre>";
-        var_dump(mysqli_fetch_assoc($consulta));
-        echo "</pre>";
 
         //cerrar la conexion
-        $resultado = mysqli_close($db);
-        echo $resultado;
 
 
 
