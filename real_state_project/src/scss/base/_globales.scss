@@ -1,3 +1,4 @@
+@use 'variables' as *;
 html {
     font-size: 62.5%;
     box-sizing: border-box;
@@ -32,7 +33,7 @@ picture {
 
 h1, h2, h3 {
     font-family: $fuente_principal;
-    margin: $separacion / 2 0;
+    margin: $separacion * 0.5 0;
     font-weight: 300;
     text-align: center;
     

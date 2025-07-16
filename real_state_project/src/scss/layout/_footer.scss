@@ -1,10 +1,13 @@
+@use '../base/variables' as *;
+@use '../base/variables' as *;
+@use '../base/variables' as *;
 .footer {
-    padding: $separacion / 2 0 ;
+    padding: $separacion * 0.5 0 ;
     background-color: $grisOscuro;
     margin-bottom: 0;
 
     .contenedor-footer {
-        padding-top: $separacion / 2;
+        padding-top: $separacion * 0.5;
     }
 
     .navegacion {
