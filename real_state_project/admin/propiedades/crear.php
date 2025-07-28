@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (strlen($descripcion) < 50) {
-        $errores[] = "La descripcion es obligatoria";
+        $errores[] = "La descripcion es obligatoria y debe tener por lo menos 50 caracteres";
     }
 
     if (!$habitaciones) {
