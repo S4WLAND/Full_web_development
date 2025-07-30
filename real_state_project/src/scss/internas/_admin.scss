@@ -25,8 +25,8 @@ table.propiedades {
     border-spacing: 0;
 
 
-    .thead {
-        background-color: verde;
+    thead {
+        background-color: $verde;
 
         th {
             color: $blanco;
@@ -38,5 +38,35 @@ table.propiedades {
     .imagen-tabla {
         width: 10rem;;
 
+    }
+
+
+}
+
+.contenedor-botones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+    form {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .boton-rojo-block,
+    .boton-amarillo-block {
+        width: 100%;
+        box-sizing: border-box;
+        
+        // Normalizar solo estos botones específicos
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+        min-height: auto;
+        vertical-align: baseline;
     }
 }

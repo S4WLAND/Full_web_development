@@ -57,12 +57,15 @@ incluir_template('header');
         </td>
         <td>$<?= number_format((float)($prop['precio'] ?? 0.0), 0, ',', '.') ?></td>
         <td class="acciones">
-          <form method="POST" action="borrar.php" class="w-btn-inline">
-            <input type="hidden" name="id" value="<?= htmlspecialchars((string)($prop['id'] ?? ''), ENT_QUOTES) ?>">
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '', ENT_QUOTES) ?>">
-            <button type="submit" class="boton-rojo-block">Eliminar</button>
-          </form>
-          <a href="actualizar.php?id=<?= urlencode((string)($prop['id'] ?? '')) ?>" class="boton-amarillo-block">Actualizar</a>
+          <!-- Botones de acción con CSRF token -->
+          <div class="contenedor-botones">
+              <form method="POST" action="borrar.php">
+                  <input type="hidden" name="id" value="<?= htmlspecialchars((string)($prop['id'] ?? ''), ENT_QUOTES) ?>">
+                  <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '', ENT_QUOTES) ?>">
+                  <button type="submit" class="boton-rojo-block">Eliminar</button>
+              </form>
+              <a href="actualizar.php?id=<?= urlencode((string)($prop['id'] ?? '')) ?>" class="boton-amarillo-block">Actualizar</a>
+          </div>
         </td>
       </tr>
       <?php endwhile; ?>

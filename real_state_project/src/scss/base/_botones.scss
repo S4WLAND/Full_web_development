@@ -13,7 +13,7 @@
 }
 
 .boton-rojo-block {
-    @include boton($rojo, inline-block);
+    @include boton($rojo, block);
 }
 
 .boton-verde-block {
