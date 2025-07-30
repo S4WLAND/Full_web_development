@@ -1,16 +1,75 @@
 <?php
+session_start();
+// Generar CSRF token único por sesión (nullsafe assignment)
+$_SESSION['csrf_token'] ??= bin2hex(random_bytes(32));
 
+require_once __DIR__ . '/../includes/app.php';
+require_once __DIR__ . '/../includes/config/database.php';
+require_once FUNCIONES_URL;
 
-require '../includes/funciones.php';
-incluir_template('header'); 
+// Conexión a la base de datos
+$db = conectarDB();
+// Obtener parámetro flash validado como entero
+$resultado = filter_input(INPUT_GET, 'resultado', FILTER_VALIDATE_INT) ?? 0;
+// Consulta de propiedades
+$sql    = 'SELECT id, titulo, imagen, precio FROM propiedades';
+$result = mysqli_query($db, $sql);
+
+incluir_template('header');
 ?>
+<main class="contenedor seccion">
+  <h1>Administrador de Bienes Raíces</h1>
 
-    <main class="contenedor seccion">
-        <h1>Administrador de Bienes Raices</h1>
+  <!-- Mensajes flash usando match expression de PHP 8 -->
+  <?php
+  $mensaje = match($resultado) {
+      1 => 'Anuncio creado correctamente',
+      2 => 'Anuncio actualizado correctamente',
+      3 => 'Anuncio eliminado correctamente',
+      default => ''
+  };
+  if ($mensaje !== ''): ?>
+    <p class="alerta exito"><?= htmlspecialchars($mensaje, ENT_QUOTES) ?></p>
+  <?php endif; ?>
 
-        <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
-    </main>
+  <a href="crear.php" class="boton boton-verde">Nueva Propiedad</a>
 
+  <table class="propiedades">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Imagen</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php while ($prop = mysqli_fetch_assoc($result)): ?>
+      <tr>
+        <td><?= htmlspecialchars((string)($prop['id'] ?? ''), ENT_QUOTES) ?></td>
+        <td><?= htmlspecialchars((string)($prop['titulo'] ?? ''), ENT_QUOTES) ?></td>
+        <td>
+          <img
+            src="<?= IMG_BASE_URL . htmlspecialchars((string)($prop['imagen'] ?? ''), ENT_QUOTES) ?>"
+            alt="Imagen <?= htmlspecialchars((string)($prop['titulo'] ?? ''), ENT_QUOTES) ?>"
+            class="imagen-tabla">
+        </td>
+        <td>$<?= number_format((float)($prop['precio'] ?? 0.0), 0, ',', '.') ?></td>
+        <td class="acciones">
+          <form method="POST" action="borrar.php" class="w-btn-inline">
+            <input type="hidden" name="id" value="<?= htmlspecialchars((string)($prop['id'] ?? ''), ENT_QUOTES) ?>">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '', ENT_QUOTES) ?>">
+            <button type="submit" class="boton-rojo-block">Eliminar</button>
+          </form>
+          <a href="actualizar.php?id=<?= urlencode((string)($prop['id'] ?? '')) ?>" class="boton-amarillo-block">Actualizar</a>
+        </td>
+      </tr>
+      <?php endwhile; ?>
+    </tbody>
+  </table>
+</main>
 <?php
-    incluir_template('footer'); 
-?> 
+incluir_template('footer');
+mysqli_close($db);
+?>
