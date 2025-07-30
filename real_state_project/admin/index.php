@@ -32,7 +32,7 @@ incluir_template('header');
     <p class="alerta exito"><?= htmlspecialchars($mensaje, ENT_QUOTES) ?></p>
   <?php endif; ?>
 
-  <a href="crear.php" class="boton boton-verde">Nueva Propiedad</a>
+  <a href="admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
 
   <table class="propiedades">
     <thead>
