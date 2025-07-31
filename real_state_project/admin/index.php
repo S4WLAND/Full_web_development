@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 // Generar CSRF token único por sesión (nullsafe assignment)
@@ -32,7 +33,7 @@ incluir_template('header');
     <p class="alerta exito"><?= htmlspecialchars($mensaje, ENT_QUOTES) ?></p>
   <?php endif; ?>
 
-  <a href="admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+  <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
 
   <table class="propiedades">
     <thead>
@@ -66,12 +67,12 @@ incluir_template('header');
         <td class="acciones">
           <!-- Botones de acción con CSRF token -->
           <div class="contenedor-botones">
-              <form method="POST" action="borrar.php">
+              <form method="POST" action="/admin/propiedades/borrar.php">
                   <input type="hidden" name="id" value="<?= htmlspecialchars((string)($prop['id'] ?? ''), ENT_QUOTES) ?>">
                   <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '', ENT_QUOTES) ?>">
                   <button type="submit" class="boton-rojo-block">Eliminar</button>
               </form>
-              <a href="actualizar.php?id=<?= urlencode((string)($prop['id'] ?? '')) ?>" class="boton-amarillo-block">Actualizar</a>
+              <a href="/admin/propiedades/actualizar.php?id=<?= urlencode((string)($prop['id'] ?? '')) ?>" class="boton-amarillo-block">Actualizar</a>
           </div>
         </td>
       </tr>
