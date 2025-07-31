@@ -105,7 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Validación de la imagen (código de $_FILES)
+    // Validación de la imagen (ahora opcional)
+    $imageName = null;
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] !== UPLOAD_ERR_NO_FILE) {
         $img = $_FILES['imagen'];
         if ($img['error'] !== UPLOAD_ERR_OK) {
@@ -122,21 +123,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!in_array($ext, ['jpg','jpeg','png'], true)) {
                 $errores[] = 'Extensión inválida.';
             }
+            
+            // Si no hay errores de imagen, preparar para subir
+            if (empty($errores)) {
+                // Asegurar directorio de imágenes
+                if (!is_dir(IMG_BASE_PATH)) {
+                    mkdir(IMG_BASE_PATH, 0755, true);
+                }
+                // Generar nombre único
+                $imageName = uniqid('prop_', true) . ".{$ext}";
+            }
         }
-    } else {
-        $errores[] = 'La imagen es obligatoria.';
     }
 
-    // Si pasa validación: subir imagen y guardar registro
+    // Si pasa validación: subir imagen (si existe) y guardar registro
     if (empty($errores)) {
-        // Asegurar directorio de imágenes
-        if (!is_dir(IMG_BASE_PATH)) {
-            mkdir(IMG_BASE_PATH, 0755, true);
+        // Subir imagen si se proporcionó
+        if ($imageName) {
+            move_uploaded_file($img['tmp_name'], IMG_BASE_PATH . '/' . $imageName);
+            $campos['imagen'] = mysqli_real_escape_string($db, $imageName);
+        } else {
+            $campos['imagen'] = ''; // Imagen vacía si no se proporcionó
         }
-        // Generar nombre único y mover archivo
-        $imageName = uniqid('prop_', true) . ".{$ext}";
-        move_uploaded_file($img['tmp_name'], IMG_BASE_PATH . '/' . $imageName);
-        $campos['imagen'] = mysqli_real_escape_string($db, $imageName);
 
         // Construir e insertar en BD
         $campos['creado'] = date('Y/m/d');
@@ -169,7 +177,7 @@ incluir_template('header');
             <input type="text" id="titulo" name="propiedad[titulo]" value="<?= htmlspecialchars($campos['titulo']); ?>">
             <label for="precio">Precio</label>
             <input type="number" id="precio" name="propiedad[precio]" value="<?= htmlspecialchars($campos['precio']); ?>">
-            <label for="imagen">Imagen</label>
+            <label for="imagen">Imagen (opcional)</label>
             <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
             <label for="descripcion">Descripción</label>
             <textarea id="descripcion" name="propiedad[descripcion]"><?= htmlspecialchars($campos['descripcion']); ?></textarea>

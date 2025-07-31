@@ -50,10 +50,17 @@ incluir_template('header');
         <td><?= htmlspecialchars((string)($prop['id'] ?? ''), ENT_QUOTES) ?></td>
         <td><?= htmlspecialchars((string)($prop['titulo'] ?? ''), ENT_QUOTES) ?></td>
         <td>
-          <img
-            src="<?= IMG_BASE_URL . htmlspecialchars((string)($prop['imagen'] ?? ''), ENT_QUOTES) ?>"
-            alt="Imagen <?= htmlspecialchars((string)($prop['titulo'] ?? ''), ENT_QUOTES) ?>"
-            class="imagen-tabla">
+          <?php if (!empty($prop['imagen'])): ?>
+            <img
+              src="<?= IMG_BASE_URL . htmlspecialchars((string)($prop['imagen'] ?? ''), ENT_QUOTES) ?>"
+              alt="Imagen <?= htmlspecialchars((string)($prop['titulo'] ?? ''), ENT_QUOTES) ?>"
+              class="imagen-tabla">
+          <?php else: ?>
+            <div class="imagen-placeholder">
+              <span class="placeholder-icon">📷</span>
+              <span class="placeholder-text">Sin imagen</span>
+            </div>
+          <?php endif; ?>
         </td>
         <td>$<?= number_format((float)($prop['precio'] ?? 0.0), 0, ',', '.') ?></td>
         <td class="acciones">
