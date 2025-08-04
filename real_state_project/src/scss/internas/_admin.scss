@@ -106,3 +106,32 @@ table.propiedades {
         vertical-align: baseline;
     }
 }
+
+@media (min-width: 768px) {
+    .contenedor-botones {
+        flex-direction: row;
+        gap: 1rem;
+        
+        .boton-rojo-block,
+        .boton-amarillo-block {
+            width: auto;
+        }
+    }
+}
+
+.dark-mode {
+    table.propiedades {
+        tbody {
+            td {
+                color: $blanco;
+
+                .imagen-placeholder {
+                    .placeholder-text,
+                    .placeholder-icon {
+                        color: $grisOscuro;
+                    }
+                }
+            }
+        }
+    }
+}
