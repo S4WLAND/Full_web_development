@@ -1,13 +1,12 @@
 @use 'sass:color';
 @use '../base/variables' as *;
-@use '../base/variables' as *;
-@use '../base/variables' as *;
-@use '../base/mixins' as *;
 @use '../base/mixins' as *;
 
 @include tablet {
     .contenedor-anuncios {
         @include grid(3, 2rem);
+        // Asegurar que todos los anuncios tengan la misma altura
+        align-items: stretch;
     }
 }
 
@@ -15,38 +14,164 @@
     background-color: color.adjust($gris, $lightness: 5%, $space: hsl);
     border: 1px solid color.adjust($gris, $lightness: -10%, $space: hsl);
     margin-bottom: 2rem;
+    
+    // Usar flexbox para que todos los anuncios tengan la misma estructura
+    display: flex;
+    flex-direction: column;
+    height: 100%; // Ocupar toda la altura disponible
+
+    // Contenedor de imagen con altura fija
+    .imagen-container {
+        height: 25rem; // Altura fija para todas las imágenes
+        overflow: hidden;
+        flex-shrink: 0; // No permitir que se reduzca
+    }
 
     .contenido-anuncio {
         padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; // Ocupar el espacio restante
+        
+        // Espaciado interno del contenido
+        .info-basica {
+            flex-grow: 1; // El contenido principal ocupa el espacio disponible
+            margin-bottom: 2rem;
+        }
+        
+        .caracteristicas-y-boton {
+            margin-top: auto; // Empujar hacia abajo
+        }
     }
 
-    h3, p {
-        margin: 0;
+    h3 {
+        margin: 0 0 1rem 0;
+        // Altura mínima para títulos para mantener consistencia
+        min-height: 3.5rem;
+        display: flex;
+        align-items: flex-start;
+        font-size: 2.2rem;
+        line-height: 1.2;
     }
- 
+
+    .descripcion {
+        margin: 0 0 1.5rem 0;
+        min-height: 8.4rem; // Altura mínima para mantener alineación
+        overflow: hidden;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        word-break: keep-all; // Mantener palabras completas
+        overflow-wrap: break-word; // Solo romper en espacios o guiones
+    }
+
+    // Estilos para las imágenes de anuncios
+    picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // Mantener proporción y cubrir el contenedor
+            display: block;
+        }
+    }
+
+    // Estilos para el placeholder de imagen
+    .imagen-placeholder {
+        width: 100%;
+        height: 100%;
+        background-color: $gris;
+        border: 2px dashed $grisOscuro;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .placeholder-icon {
+            font-size: 4rem;
+            color: $grisOscuro;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .placeholder-text {
+            font-size: 1.6rem;
+            color: $grisOscuro;
+            font-weight: $regular;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            text-align: center;
+        }
+    }
 }
+
 .precio {
     color: $verde;
     font-weight: $bold;
     font-size: 3rem;
+    margin: 0 0 2rem 0;
+    // Altura fija para mantener consistencia
+    height: 4rem;
+    display: flex;
+    align-items: center;
 }
 
 .iconos-caracteristicas {
     display: flex;
     list-style: none;
     padding: 0;
+    margin: 0 0 2rem 0;
     max-width: 40rem;
+    // Altura fija para las características
+    min-height: 4rem;
 
     li {
         flex: 1;
         display: flex;
+        align-items: center;
 
         img {
-            flex:  0 0 3rem;
+            flex: 0 0 3rem;
             margin-right: 1rem;
         }
         p {
             font-weight: $black;
+            margin: 0;
+        }
+    }
+}
+
+// Ajuste específico para el botón en el contexto de anuncios
+.boton-amarillo-block {
+    margin-top: auto;
+}
+
+// Media queries para responsive
+@include telefono {
+    .anuncio {
+        .imagen-container {
+            height: 20rem; // Altura menor en móviles
+        }
+        
+        h3 {
+            font-size: 2rem;
+            min-height: 3rem;
+        }
+        
+        .descripcion {
+            min-height: 7rem; // Altura mínima para móviles
+        }
+    }
+}
+
+@include tablet {
+    .anuncio {
+        .imagen-container {
+            height: 22rem; // Altura intermedia en tablets
         }
     }
 }

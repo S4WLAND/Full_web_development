@@ -9,6 +9,9 @@ require 'app.php';
  * @param bool $inicio if the template is for the homepage or not
  * @return void include all the url  
  */
-function incluir_template(string $nombre, bool $inicio = false) {
+function incluir_template(string $nombre, bool $inicio = false, array $props = []) {
+    if (!empty($props)) {
+        extract($props);
+    }
     include TEMPLATES_URL . "/$nombre.php";
 }
