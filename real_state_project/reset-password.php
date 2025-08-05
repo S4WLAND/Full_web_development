@@ -1,4 +1,6 @@
 <?php
+use Dotenv\Dotenv;
+
 require 'includes/app.php';
 require 'includes/config/database.php';
 require 'includes/funciones.php';
@@ -36,13 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->Host = 'sandbox.smtp.mailtrap.io';
                 $mail->SMTPAuth = true;
                 $mail->Port = 2525;
-                use Dotenv\Dotenv;
+                
+                $dotenv = Dotenv::createImmutable(__DIR__);
+                $dotenv->load();
 
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-$mail->Username = $_ENV['DB_USERNAME'];
-$mail->Password = $_ENV['DB_PASSWORD'];
+                $mail->Username = $_ENV['DB_USERNAME'];
+                $mail->Password = $_ENV['DB_PASSWORD'];
 
                 //Recipients
                 $mail->setFrom('no-reply@tudominio.com', 'Bienes Raices');
