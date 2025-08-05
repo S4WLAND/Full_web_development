@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 // Cargar configuración global (constantes de rutas, URLs, etc.)
 require __DIR__ . '/../../includes/app.php';
 
@@ -8,6 +6,7 @@ require __DIR__ . '/../../includes/app.php';
 require __DIR__ . '/../../includes/config/database.php';
 require FUNCIONES_URL;
 
+protegerRuta();
 $db = conectarDB();
 
 // Validar método POST
