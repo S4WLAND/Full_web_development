@@ -1,12 +1,11 @@
 
 <?php
-session_start();
-// Generar CSRF token único por sesión (nullsafe assignment)
-$_SESSION['csrf_token'] ??= bin2hex(random_bytes(32));
-
 require_once __DIR__ . '/../includes/app.php';
 require_once __DIR__ . '/../includes/config/database.php';
 require_once FUNCIONES_URL;
+
+protegerRuta();
+$_SESSION['csrf_token'] ??= bin2hex(random_bytes(32));
 
 // Conexión a la base de datos
 $db = conectarDB();

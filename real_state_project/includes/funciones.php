@@ -15,3 +15,42 @@ function incluir_template(string $nombre, bool $inicio = false, array $props = [
     }
     include TEMPLATES_URL . "/$nombre.php";
 }
+
+/**
+ * Start or resume a session in a safe manner.
+ *
+ * This helper prevents repeated calls to session_start() which would
+ * otherwise emit warnings if the session is already active.
+ *
+ * @return void
+ */
+function iniciarSesion(): void {
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+}
+
+/**
+ * Determine if the current user is authenticated.
+ *
+ * @return bool True when the user has an active authenticated session
+ */
+function estaAutenticado(): bool {
+    iniciarSesion();
+    return (bool)($_SESSION['login'] ?? false);
+}
+
+/**
+ * Protect a page from unauthorized access.
+ *
+ * If the user is not authenticated they will be redirected to the
+ * login page and execution will stop.
+ *
+ * @return void
+ */
+function protegerRuta(): void {
+    if (!estaAutenticado()) {
+        header('Location: /login.php');
+        exit;
+    }
+}

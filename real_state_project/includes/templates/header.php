@@ -1,3 +1,4 @@
+<?php iniciarSesion(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +27,11 @@
                         <a href="/anuncios.php">Anuncios</a>
                         <a href="/blog.php">Blog</a>
                         <a href="/contacto.php">Contacto</a>
+                        <?php if (estaAutenticado()): ?>
+                            <a href="/logout.php">Cerrar Sesión</a>
+                        <?php else: ?>
+                            <a href="/login.php">Iniciar Sesión</a>
+                        <?php endif; ?>
                     </nav>
                 </div>
 
