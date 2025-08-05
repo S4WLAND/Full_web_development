@@ -36,8 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->Host = 'sandbox.smtp.mailtrap.io';
                 $mail->SMTPAuth = true;
                 $mail->Port = 2525;
-                $mail->Username = 'c8b4d0b3875441';
-                $mail->Password = '8c749cdb02b8f0';
+                use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$mail->Username = $_ENV['DB_USERNAME'];
+$mail->Password = $_ENV['DB_PASSWORD'];
 
                 //Recipients
                 $mail->setFrom('no-reply@tudominio.com', 'Bienes Raices');
