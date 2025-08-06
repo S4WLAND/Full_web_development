@@ -9,15 +9,9 @@ include 'includes/header.php';
 class Producto {
 
     // propiedades o atributos
-    public $nombre;
-    public $precio;
-    public $disponible;
-
     // constructores
-    public function __construct(string $nombre, float $precio, bool $disponible) {
-        $this->nombre = $nombre;
-        $this->precio = $precio;
-        $this->disponible = $disponible;
+    public function __construct(public string $nombre, public float $precio, public bool $disponible) {
+
 
     }
 
