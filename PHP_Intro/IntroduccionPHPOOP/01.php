@@ -11,14 +11,18 @@ class Producto {
     // propiedades o atributos
     // constructores
     public function __construct(public string $nombre, public float $precio, public bool $disponible) {
-
-
     }
 
+    // metodos
+    public function mostrarProducto(): void {
+        echo "Nombre: {$this->nombre}, Precio: {$this->precio}, Disponible: " . ($this->disponible ? 'Sí' : 'No') . PHP_EOL;
+    }
 
 }
 
 $producto = new Producto('Tablet', 200, true);
+
+$producto->mostrarProducto();
 
 echo '<pre>';
 var_dump($producto);
