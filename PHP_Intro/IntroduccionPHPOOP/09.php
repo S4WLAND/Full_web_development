@@ -1,6 +1,12 @@
 <?php include 'includes/header.php';
 
 // conectar a la bd con mysqli
+$db = new mysqli(
+    'localhost',
+    'root', 
+    'root', 
+    'bienes_raices_crud'
+);
 
 $query = "SELECT titulo, imagen FROM propiedades";
 
