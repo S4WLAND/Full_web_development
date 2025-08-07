@@ -1,25 +1,6 @@
 <?php include 'includes/header.php';
 
-// require 'clases/clientes.php';
-// require 'clases/detalles.php';
-
-// function autoload($className) {
-//     $file = 'clases/' . strtolower($className) . '.php';
-//     if (file_exists($file)) {
-//         include $file;
-//     }
-// }
-
-function autoloadWithNamespace($className) {
-    // Obtener solo la última parte (nombre de clase sin namespace)
-    $className = basename(str_replace('\\', '/', $className));
-    $file = 'clases' . DIRECTORY_SEPARATOR . strtolower($className) . '.php';
-    if (file_exists($file)) {
-        include $file;
-    }
-}
-
-spl_autoload_register('autoloadWithNamespace');
+require 'vendor/autoload.php';
 
 class Clientes {
     public function __construct() {
