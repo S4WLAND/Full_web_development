@@ -6,7 +6,7 @@ interface TransportInterface {
     public function getWheels(): int;
 }
 
-abstract class Transport implements TransportInterface {
+class Transport implements TransportInterface {
     public function __construct(protected int $wheels, protected int $capacity) {
     }
 
